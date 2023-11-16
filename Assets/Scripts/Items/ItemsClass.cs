@@ -185,16 +185,7 @@ public class ItemsClass : MonoBehaviour
         Item itemToReset = FindItemById(itemId);
         if (itemToReset != null)
         {
-            itemToReset.heal_point = 0;
-            itemToReset.attack_rating = 0;
-            itemToReset.defence = 0;
-            itemToReset.dodge = 0;
-            itemToReset.crit_chance = 0;
-            itemToReset.crit_damage = 0;
-            itemToReset.resistance = 0;
-            itemToReset.accuracy = 0;
             itemToReset.equiped = false;
-
             SaveItems();
         }
 
