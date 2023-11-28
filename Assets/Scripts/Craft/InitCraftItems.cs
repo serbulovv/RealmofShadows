@@ -79,9 +79,13 @@ public class InitCraftItems : MonoBehaviour
         coreItemText.gameObject.SetActive(true);
         craftItemButton.gameObject.SetActive(true);
         Text[] childTexts = recipeCanvas.GetComponentsInChildren<Text>(true);
+        Image[] childImages = recipeCanvas.GetComponentsInChildren<Image>(true);
 
-        for(int i = 0; i < craftItems.items.Length; i++)
+        for (int i = 0; i < craftItems.items.Length; i++)
         {
+            childImages[i].sprite = Resources.Load<Sprite>(craftItems.items[i].image_path);
+            childImages[i].gameObject.SetActive(true);
+
             childTexts[i].text = craftItems.items[i].item_name + " x"+amounts[i];
             childTexts[i].gameObject.SetActive(true);
         }
