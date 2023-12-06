@@ -23,6 +23,8 @@ public class Item
     public int crit_damage;
     public int resistance;
     public int accuracy;
+    public string default_item_stat_name;
+    public int default_item_stat_value;
 }
 
 [System.Serializable]
@@ -50,6 +52,8 @@ public class DropedItemData
     public int crit_damage;
     public int resistance;
     public int accuracy;
+    public string default_item_stat_name;
+    public int default_item_stat_value;
 }
 
 public class ItemsClass : MonoBehaviour
@@ -168,7 +172,9 @@ public class ItemsClass : MonoBehaviour
                             crit_chance = item.crit_chance,
                             crit_damage = item.crit_damage,
                             resistance = item.resistance,
-                            accuracy = item.accuracy
+                            accuracy = item.accuracy,
+                            default_item_stat_name = item.default_item_stat_name,
+                            default_item_stat_value = item.default_item_stat_value
                         };
 
                         result.Add(itemData);
@@ -183,9 +189,19 @@ public class ItemsClass : MonoBehaviour
     public static void ResetItemFields(int itemId)
     {
         Item itemToReset = FindItemById(itemId);
+
         if (itemToReset != null)
         {
             itemToReset.equiped = false;
+
+            foreach (var field in itemToReset.GetType().GetFields())
+            {
+                if(itemToReset.default_item_stat_name == field.Name)
+                {
+                    itemToReset.GetType().GetField(field.Name).SetValue(itemToReset, itemToReset.default_item_stat_value);
+                }
+            }
+
             SaveItems();
         }
 
