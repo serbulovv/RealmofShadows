@@ -15,24 +15,26 @@ public class RegistrateUser : MonoBehaviour
         if (!string.IsNullOrEmpty(userInput))
         {
             string current_user_json = "{\"current_user\":{\"init\":true, \"username\":\"" + userInput + "\", \"level\":1, \"next_level_exp\":120, \"title\":\"Nebulae Warriors\",\"money\":0, \"image_path\":\"Images/Units/main_character\", \"base_hp\":100, \"base_def\":0, \"base_phys_damage\":20}}";
-           
-            string levels_json = "{\"levels\":[{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1000,1001,1002,1003,1004,1005],\"unlocked\":true}," +
-                "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":true}," +
-                "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":true}," +
-                "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":true}," +
-                "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":true}," +
-                "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":true}]}";
-           
+
+            string levels_json = "{\"levels\":[{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1000,1001,1002,1003,1004,1005],\"unlocked\":true,\"level_image_path\":\"Images/Dungeons/the_dark_descent\"}," +
+               "{\"level_id\":101,\"level_name\":\"The Ancient Pyramid\",\"level_unit_ids\":[1001],\"unlocked\":false,\"level_image_path\":\"Images/Dungeons/the_ancient_pyramid\"}," +
+               "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":false,\"level_image_path\":\"no_image\"}," +
+               "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":false,\"level_image_path\":\"no_image\"}," +
+               "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":false,\"level_image_path\":\"no_image\"}," +
+               "{\"level_id\":100,\"level_name\":\"The Dark Descent\",\"level_unit_ids\":[1001,1002,1003,1004,1005,1006],\"unlocked\":false,\"level_image_path\":\"no_image\"}]}";
+
+
             string current_user_inventory_json = "{\"inventor\":[]}";
-           
+
             string units_json = "{\"units\":[" +
-             "{\"unit_id\":1000,\"unlocked\":true,\"unit_name\":\"Dungeon Guardian\",\"unit_image_path\":\"Images/Units/dungeon_guard_100\",\"unit_level\":1,\"dropped_items_id\":[1,2],\"unit_base_hp\":40,\"unit_base_def\":1,\"unit_base_phys_damage\":20}," +
-             "{\"unit_id\":1001,\"unlocked\":false,\"unit_name\":\"Giant Rat\",\"unit_image_path\":\"Images/Units/huge_rat_100\",\"unit_level\":2,\"dropped_items_id\":[1,3],\"unit_base_hp\":50,\"unit_base_def\":1,\"unit_base_phys_damage\":20}," +
-             "{\"unit_id\":1002,\"unlocked\":false,\"unit_name\":\"Dungeon Skeleton\",\"unit_image_path\":\"Images/Units/dungeon_skeleton_100\",\"unit_level\":2,\"dropped_items_id\":[1,4],\"unit_base_hp\":50,\"unit_base_def\":1,\"unit_base_phys_damage\":40}," +
-             "{\"unit_id\":1003,\"unlocked\":false,\"unit_name\":\"Brutal Prisoner\",\"unit_image_path\":\"Images/Units/brutal_prisoner_100\",\"unit_level\":3,\"dropped_items_id\":[1,5],\"unit_base_hp\":200,\"unit_base_def\":1,\"unit_base_phys_damage\":20}," +
-             "{\"unit_id\":1004,\"unlocked\":false,\"unit_name\":\"Defiled Knight\",\"unit_image_path\":\"Images/Units/defiled_knight_100\",\"unit_level\":4,\"dropped_items_id\":[1,6],\"unit_base_hp\":200,\"unit_base_def\":1,\"unit_base_phys_damage\":20}," +
-             "{\"unit_id\":1005,\"unlocked\":false,\"unit_name\":\"Ruler Of The Descent\",\"unit_image_path\":\"Images/Units/ruler_of_the_descent_100\",\"unit_level\":5,\"dropped_items_id\":[1,7],\"unit_base_hp\":300,\"unit_base_def\":1,\"unit_base_phys_damage\":20}" +
-             "]}";
+                "{\"unit_id\":1000,\"unlocked\":true,\"unit_name\":\"Dungeon Guardian\",\"unit_image_path\":\"Images/Units/dungeon_guard_100\",\"unit_level\":1,\"dropped_items_id\":[1,2],\"unit_base_hp\":40,\"unit_base_def\":1,\"unit_base_phys_damage\":20,\"level_to_unlock\":0}," +
+                "{\"unit_id\":1001,\"unlocked\":false,\"unit_name\":\"Giant Rat\",\"unit_image_path\":\"Images/Units/huge_rat_100\",\"unit_level\":2,\"dropped_items_id\":[1,3],\"unit_base_hp\":50,\"unit_base_def\":1,\"unit_base_phys_damage\":20,\"level_to_unlock\":0}," +
+                "{\"unit_id\":1002,\"unlocked\":false,\"unit_name\":\"Dungeon Skeleton\",\"unit_image_path\":\"Images/Units/dungeon_skeleton_100\",\"unit_level\":2,\"dropped_items_id\":[1,4],\"unit_base_hp\":50,\"unit_base_def\":1,\"unit_base_phys_damage\":40,\"level_to_unlock\":0}," +
+                "{\"unit_id\":1003,\"unlocked\":false,\"unit_name\":\"Brutal Prisoner\",\"unit_image_path\":\"Images/Units/brutal_prisoner_100\",\"unit_level\":3,\"dropped_items_id\":[1,5],\"unit_base_hp\":200,\"unit_base_def\":1,\"unit_base_phys_damage\":20,\"level_to_unlock\":0}," +
+                "{\"unit_id\":1004,\"unlocked\":false,\"unit_name\":\"Defiled Knight\",\"unit_image_path\":\"Images/Units/defiled_knight_100\",\"unit_level\":4,\"dropped_items_id\":[1,6],\"unit_base_hp\":200,\"unit_base_def\":1,\"unit_base_phys_damage\":20,\"level_to_unlock\":0}," +
+                "{\"unit_id\":1005,\"unlocked\":false,\"unit_name\":\"Ruler Of The Descent\",\"unit_image_path\":\"Images/Units/ruler_of_the_descent_100\",\"unit_level\":5,\"dropped_items_id\":[1,7],\"unit_base_hp\":300,\"unit_base_def\":1,\"unit_base_phys_damage\":20,\"level_to_unlock\":101}" +
+                "]}";
+
 
             string items_json = "{\"items\":[" +
               "{\"item_id\": 1, \"item_name\": \"Common Upgrage Stone\", \"drop_chance\": 0.7, \"item_type\": \"resource\", \"avg_amount\": 10, \"image_path\": \"Images/Items/common-upgrade-stone\", \"uniq\": false, \"rarity\": \"Common\", \"heal_point\": 0, \"attack_rating\": 0, \"defence\": 0, \"dodge\": 0, \"crit_chance\": 0, \"crit_damage\": 0, \"resistance\": 0, \"accuracy\": 0, \"item_classification\": \"\", \"equiped\": false}," +
