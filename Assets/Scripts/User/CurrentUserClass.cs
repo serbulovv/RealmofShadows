@@ -47,9 +47,10 @@ public class CurrentUserClass : MonoBehaviour
 
         if (current_exp >= next_level_exp)
         {
+            float user_level_multiplier = 1.2f;
             level++;
             current_exp = 0;
-            next_level_exp = Mathf.RoundToInt(next_level_exp * 1.5f);
+            next_level_exp = Mathf.RoundToInt(next_level_exp * user_level_multiplier);
         }
 
         saveData();

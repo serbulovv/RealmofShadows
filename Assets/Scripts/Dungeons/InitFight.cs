@@ -262,7 +262,7 @@ public class InitFight : MonoBehaviour
         // Deal damage to the user based on the unit's physical damage
         int damage = calculatePhysDamage(current_unit.unit_base_phys_damage, current_user.base_def);
         userCurrentHp -= damage;
-        currentUserHpText[0].text = userCurrentHp + "  /  " + current_user.base_hp;
+        currentUserHpText[0].text = userCurrentHp + "  /  " + (current_user.base_hp + UserStatsDataHolder.heal_points);
         currentUserSlider[0].value = userCurrentHp;
 
         StartCoroutine(ShakeImage(currentUserImage));
@@ -284,7 +284,6 @@ public class InitFight : MonoBehaviour
     int calculatePhysDamage(int _damage, int _deff, int user_deff_stat = 0, int user_damage_stat = 0)
     {
         // Calculate physical damage considering the defense
-        Debug.Log(user_damage_stat);
         float baseDamage = _damage * (1 - ((float)_deff + user_deff_stat) / 100) + user_damage_stat;
         float randomFactor = UnityEngine.Random.Range(0.95f, 1.05f);
 
@@ -296,6 +295,7 @@ public class InitFight : MonoBehaviour
     {
         // Refresh the user and unit stats after each battle
         current_unit = findUnit(LevelDataHolder._unitId);
+
         counterText.text = _remainingBattles + " / " + LevelDataHolder._unitsCount;
         userCurrentHp = current_user.base_hp + UserStatsDataHolder.heal_points;
         unitCurrentHp = current_unit.unit_base_hp;
@@ -313,6 +313,7 @@ public class InitFight : MonoBehaviour
         // Calculate the experience gained based on the unit's level and user's level
         float multiplier = (float)current_unit.unit_level / current_user.level;
         int experience = Mathf.RoundToInt((base_experience + UnityEngine.Random.Range(-deviation, deviation)) * multiplier);
+        
         return experience * LevelDataHolder._unitsCount;
     }
 
@@ -516,7 +517,7 @@ public class InitFight : MonoBehaviour
 
     private int CalculateMoney()
     {
-        int money = (base_money + UnityEngine.Random.Range(-monye_deviation, monye_deviation)) * (current_unit.unit_level / current_user.level) * LevelDataHolder._unitsCount;
+        int money = (base_money + UnityEngine.Random.Range(-monye_deviation, monye_deviation)) * current_unit.unit_level * LevelDataHolder._unitsCount;
         if(money > 0)
         {
             return money;
