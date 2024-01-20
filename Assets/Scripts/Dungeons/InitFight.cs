@@ -42,11 +42,14 @@ public class InitFight : MonoBehaviour
     private int finalMoney; // variable to store final user exp. we need to store this exp and display on win screen
     private List<DropedItemData> resultItems = new List<DropedItemData>(); // final items that user will get
 
+    public GameObject levelManagerObject;
+
     [System.Serializable]
     public class Unit
     {
         public int unit_id;
         public bool unlocked;
+        public int level_to_unlock;
         public int money;
         public string unit_name;
         public int unit_level;
@@ -100,6 +103,7 @@ public class InitFight : MonoBehaviour
         current_user = getUserData();
         userCurrentHp = current_user.base_hp + UserStatsDataHolder.heal_points;
         unitCurrentHp = current_unit.unit_base_hp;
+        levelManagerObject = GameObject.Find("LevelManager");
         InitData(current_user, current_unit);
         fightProcess();
     }
@@ -350,6 +354,7 @@ public class InitFight : MonoBehaviour
                 finalExp += exp;
                 CurrentUserClass.addExp(exp);
                 CurrentUserClass.addMoney(finalMoney);
+                UnlockLevel(current_unit.level_to_unlock);
                 StartCoroutine(ActivateVictoryImageAfterBattles());
                 if (resultItems.Count > 0)
                 {
@@ -566,6 +571,27 @@ public class InitFight : MonoBehaviour
 
             elapsedTime += Time.deltaTime * floatingSpeed;
             yield return null;
+        }
+    }
+
+    void UnlockLevel(int _levelId)
+    {
+        if (levelManagerObject != null)
+        {
+            LevelManager levelManager = levelManagerObject.GetComponent<LevelManager>();
+
+            if (levelManager != null)
+            {
+                levelManager.UnlockLevel(_levelId);
+            }
+            else
+            {
+                Debug.LogError("LevelManager script not found on the LevelManager object.");
+            }
+        }
+        else
+        {
+            Debug.LogError("LevelManager object not found.");
         }
     }
 }
