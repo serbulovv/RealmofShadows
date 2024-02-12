@@ -204,9 +204,6 @@ public class ItemsClass : MonoBehaviour
 
             SaveItems();
         }
-
-        string inventoryJson = PlayerPrefs.GetString("current_user_inventory");
-        InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(inventoryJson);
     }
 
     private static void SaveItems()
